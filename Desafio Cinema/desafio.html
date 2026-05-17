@@ -67,49 +67,49 @@
                 </div>
 
             </div>
-
         </div>
-
-        <script>
-            const assentos = document.querySelectorAll(".assento");
-            const quantidade = document.getElementById("quantidade");
-            const listaAssentos = document.getElementById("lista-assentos");
-
-            for (let i = 0; i < assentos.length; i++) {
-
-                assentos[i].onclick = function () {
-
-                    // verifica a cor atual
-                    if (this.style.backgroundColor == "green") {
-
-                        // volta ao normal
-                        this.style.backgroundColor = "white";
-
-                    } else {
-
-                        // fica verde
-                        this.style.backgroundColor = "green";
-                    }
-
-                    contarAssentos();
-                };
-                
-            }
-
-            function contarAssentos() {
-                let contador = 0;
-                let nomes = '';
-                for (let i = 0; i < assentos.length; i++) {
-                    if (assentos[i].style.backgroundColor == "green") {
-                        contador++;
-                        nomes += assentos[i].innerHTML;
-                        nomes += " ";
-                    }
-                }
-                quantidade.innerHTML = contador + " assentos";
-                listaAssentos.innerHTML = nomes;
-            }
-        </script>
+    </div>
 </body>
+
+<script>
+    const assentos = document.querySelectorAll(".assento");
+    const quantidade = document.getElementById("quantidade");
+    const listaAssentos = document.getElementById("lista-assentos");
+
+    for (let i = 0; i < assentos.length; i++) {
+
+        assentos[i].onclick = function () {
+
+            // verifica a cor atual
+            if (this.style.backgroundColor == "green") {
+
+                // volta ao normal
+                this.style.backgroundColor = "white";
+
+            } else {
+
+                // fica verde
+                this.style.backgroundColor = "green";
+            }
+
+            contarAssentos();
+        };
+        
+    }
+
+    function contarAssentos() {
+        let contador = 0;
+        let nomes = '';
+        for (let i = 0; i < assentos.length; i++) {
+            if (assentos[i].style.backgroundColor == "green") {
+                contador++;
+                nomes += assentos[i].innerHTML;
+                nomes += " ";
+            }
+        }
+        quantidade.innerHTML = contador + " assentos";
+        listaAssentos.innerHTML = nomes;
+    }
+</script>
 
 </html>
