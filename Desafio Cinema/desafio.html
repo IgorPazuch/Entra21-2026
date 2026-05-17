@@ -45,11 +45,11 @@
     const fileiras = 4;
     const assento = 10;
 
-    for (let i = 0; i < fileiras; i++) {
+    for (let i = 1; i <= fileiras; i++) {
         const fileira = document.createElement('div');
         fileira.setAttribute('class', 'fileira');
 
-        for (let j = 0; j < assento; j++) {
+        for (let j = 1; j <= assento; j++) {
             const botao = document.createElement('button');
             botao.setAttribute('class', 'assento');
             botao.style.backgroundColor = "white";
