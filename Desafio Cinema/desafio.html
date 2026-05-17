@@ -13,49 +13,10 @@
         <div class="sala">
             <h2>Por favor, escolha seu(s) assentos. </h2>
 
+            <div id="plateia">
+                <!-- Aqui dentro ficam as fileiras e assentos -->
+            </div>
 
-                <div class="fileira">
-                    <span class="letra">A</span>
-
-                    <button class="assento">A1</button>
-                    <button class="assento">A2</button>
-                    <button class="assento">A3</button>
-                    <button class="assento">A4</button>
-                    <button class="assento">A5</button>
-                    <button class="assento">A6</button>
-                    <button class="assento">A7</button>
-                    <button class="assento">A8</button>
-                    <button class="assento">A9</button>
-                </div>
-
-                <div class="fileira">
-                    <span class="letra">B</span>
-
-                    <button class="assento">B1</button>
-                    <button class="assento">B2</button>
-                    <button class="assento">B3</button>
-                    <button class="assento">B4</button>
-                    <button class="assento">B5</button>
-                    <button class="assento">B6</button>
-                    <button class="assento">B7</button>
-                    <button class="assento">B8</button>
-                    <button class="assento">B9</button>
-                </div>
-
-                <div class="fileira">
-                    <span class="letra">C</span>
-
-                    <button class="assento">C1</button>
-                    <button class="assento">C2</button>
-                    <button class="assento">C3</button>
-                    <button class="assento">C4</button>
-                    <button class="assento">C5</button>
-                    <button class="assento">C6</button>
-                    <button class="assento">C7</button>
-                    <button class="assento">C8</button>
-                    <button class="assento">C9</button>
-                </div>
-            
             <div class="painel">
 
                 <h3>Assentos selecionados</h3>
@@ -72,34 +33,54 @@
 </body>
 
 <script>
-    const assentos = document.querySelectorAll(".assento");
+    const plateia = document.getElementById("plateia");
     const quantidade = document.getElementById("quantidade");
-    const listaAssentos = document.getElementById("lista-assentos");
+    const listaAssentos = document.getElementById("lista-assentos");    
 
-    for (let i = 0; i < assentos.length; i++) {
+    // TODO: fazer com que a listagem de assentos seja dinâmica.
+    // Exemplo: 
+    // - Quero 3 fileiras de 40 cadeiras.
+    // - Quero 4 fileiras de 10 cadeiras.
 
-        assentos[i].onclick = function () {
+    const fileiras = 4;
+    const assento = 10;
 
-            // verifica a cor atual
-            if (this.style.backgroundColor == "green") {
+    for (let i = 0; i < fileiras; i++) {
+        const fileira = document.createElement('div');
+        fileira.setAttribute('class', 'fileira');
 
-                // volta ao normal
-                this.style.backgroundColor = "white";
+        for (let j = 0; j < assento; j++) {
+            const botao = document.createElement('button');
+            botao.setAttribute('class', 'assento');
+            botao.textContent = `${i}|${j}`;
+            botao.onclick = function() {
+                // verifica a cor atual
+                if (this.style.backgroundColor == "green") {
 
-            } else {
+                    // volta ao normal
+                    this.style.backgroundColor = "white";
 
-                // fica verde
-                this.style.backgroundColor = "green";
+                } else {
+
+                    // fica verde
+                    this.style.backgroundColor = "green";
+                }
+
+                contarAssentos();
             }
 
-            contarAssentos();
-        };
-        
+            fileira.appendChild(botao);
+        }
+
+        plateia.appendChild(fileira);
     }
 
-    function contarAssentos() {
+    function contarAssentos() {        
+        const assentos = document.querySelectorAll(".assento");
+
         let contador = 0;
         let nomes = '';
+
         for (let i = 0; i < assentos.length; i++) {
             if (assentos[i].style.backgroundColor == "green") {
                 contador++;
