@@ -9,11 +9,8 @@ body{
 }
 .container{
     display: flex;
-    gap: 50px;
-}
-.sala{
-    background-color: white;
-    padding: 30px;
+    flex-direction: column;
+    gap: 30px;
 }
 .fileira{
     display: flex;
@@ -25,4 +22,20 @@ body{
     width: 30px;
     height: 30px;
     border-radius: 5px;
+}
+.legenda {
+    display: flex;
+    gap: 40px;
+}
+
+.legenda-opcao {
+    display: flex; 
+    gap: 5px;
+}
+
+.legenda-icone {
+   width: 20px;
+   height: 15px;
+   border: 1px solid;
+   border-radius: 2px;
 }

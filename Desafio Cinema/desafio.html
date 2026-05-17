@@ -29,18 +29,28 @@
 
             </div>
         </div>
+       <hr>
+        <div">
+            <h3 style="margin-bottom: 10px;">Legenda: </h3>
+
+            <div class="legenda">
+                <div class="legenda-opcao">
+                    <div class="legenda-icone"></div><p>Disponível</p>
+                </div>
+
+                <div class="legenda-opcao">
+                    <div class="legenda-icone" style="background-color: green;"></div>
+                    <p>Selecionado</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
 <script>
     const plateia = document.getElementById("plateia");
     const quantidade = document.getElementById("quantidade");
-    const listaAssentos = document.getElementById("lista-assentos");    
-
-    // TODO: fazer com que a listagem de assentos seja dinâmica.
-    // Exemplo: 
-    // - Quero 3 fileiras de 40 cadeiras.
-    // - Quero 4 fileiras de 10 cadeiras.
+    const listaAssentos = document.getElementById("lista-assentos");
 
     const fileiras = 4;
     const assento = 10;
@@ -56,7 +66,7 @@
             botao.setAttribute('class', 'assento');
             botao.style.backgroundColor = "white";
             botao.textContent = `${letras[i]}${j}`;
-            botao.onclick = function() {
+            botao.onclick = function () {
                 // verifica a cor atual
                 if (this.style.backgroundColor == "green") {
 
@@ -78,7 +88,7 @@
         plateia.appendChild(fileira);
     }
 
-    function contarAssentos() {        
+    function contarAssentos() {
         const assentos = document.querySelectorAll(".assento");
 
         let contador = 0;
@@ -94,7 +104,7 @@
             nomes = 'Nenhum selecionado'
         }
         quantidade.innerHTML = contador + " assentos";
-        listaAssentos.innerHTML = nomes; 
+        listaAssentos.innerHTML = nomes;
     }
 </script>
 
