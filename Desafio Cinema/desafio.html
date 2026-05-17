@@ -24,7 +24,7 @@
                 <p id="quantidade">0 assentos</p>
 
                 <div id="lista-assentos">
-                    <p>Nenhum selecionado</p>
+                    Nenhum selecionado
                 </div>
 
             </div>
@@ -85,12 +85,14 @@
         for (let i = 0; i < assentos.length; i++) {
             if (assentos[i].style.backgroundColor == "green") {
                 contador++;
-                nomes += assentos[i].innerHTML;
-                nomes += " ";
+                nomes += assentos[i].innerHTML + " ";
             }
         }
+        if (nomes == '') {
+            nomes = 'Nenhum selecionado'
+        }
         quantidade.innerHTML = contador + " assentos";
-        listaAssentos.innerHTML = nomes;
+        listaAssentos.innerHTML = nomes; 
     }
 </script>
 
