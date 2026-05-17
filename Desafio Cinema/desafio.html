@@ -52,6 +52,7 @@
         for (let j = 0; j < assento; j++) {
             const botao = document.createElement('button');
             botao.setAttribute('class', 'assento');
+            botao.style.backgroundColor = "white";
             botao.textContent = `${i}|${j}`;
             botao.onclick = function() {
                 // verifica a cor atual
