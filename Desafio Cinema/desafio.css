@@ -3,9 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-.verde{
-    background-color: green;
-}
 body{
     font-family: arial;
     padding: 40px;
@@ -17,17 +14,12 @@ body{
 .sala{
     background-color: white;
     padding: 30px;
-    border-radius: 10px;
 }
 .fileira{
     display: flex;
     align-items: center;
     gap: 5px;
     margin: 15px 0;
-}
-.letra{
-    width: 20px;
-    font-weight: bold;
 }
 .assento{
     width: 30px;
