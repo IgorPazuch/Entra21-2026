@@ -7,16 +7,6 @@ function cadastrar(event) {
     var email = document.getElementById("email");
     var telefone = document.getElementById("telefone");
 
-    var erroNome = document.getElementById("erroNome");
-    var erroEmail = document.getElementById("erroEmail");
-    var erroTelefone = document.getElementById("erroTelefone");
-
-    // Limpando erros antigos
-    erroNome.innerHTML = "";
-    erroEmail.innerHTML = "";
-    erroTelefone.innerHTML = "";
-
-    // OBJETO CLIENTE
     var cliente = {
         nome: nome.value,
         email: email.value,
@@ -28,24 +18,18 @@ function cadastrar(event) {
 
     var editandoIndex = localStorage.getItem("editandoIndex");
 
-    if (editandoIndex !== null) {
-
+    if (editandoIndex !== null && editandoIndex !== "") {
         clientes[editandoIndex] = cliente;
-
-        localStorage.removeItem("editandoIndex");
-
-        localStorage.removeItem("nomeEditar");
-        localStorage.removeItem("emailEditar");
-        localStorage.removeItem("telefoneEditar");
-
     } else {
-
         clientes.push(cliente);
     }
-    // SALVANDO
     localStorage.setItem("clientes", JSON.stringify(clientes));
 
-    // LIMPAR CAMPOS
+    localStorage.removeItem("editandoIndex");
+    localStorage.removeItem("nomeEditar");
+    localStorage.removeItem("emailEditar");
+    localStorage.removeItem("telefoneEditar");
+
     nome.value = "";
     email.value = "";
     telefone.value = "";
@@ -99,7 +83,7 @@ window.onload = function () {
 
         </div>
 
-        </div>
+    </div>
 `;
     });
 }
@@ -169,17 +153,14 @@ window.onload = function () {
         });
     }
 
-    // ===== CADASTRO =====
     var nome = document.getElementById("nome");
-
     if (nome) {
         document.getElementById("nome").value =
             localStorage.getItem("nomeEditar") || "";
-
         document.getElementById("email").value =
             localStorage.getItem("emailEditar") || "";
-
         document.getElementById("telefone").value =
             localStorage.getItem("telefoneEditar") || "";
     }
 }
+

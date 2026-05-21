@@ -9,7 +9,6 @@ body {
     background: linear-gradient(135deg, #dbeafe, #f0f9ff);
     min-height: 100vh;
     padding: 40px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,9 +20,9 @@ body {
     width: 350px;
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     transition: 0.3s;
 }
 
@@ -46,15 +45,13 @@ input {
     padding: 12px;
     border: 1px solid #cbd5e1;
     border-radius: 10px;
-
     outline: none;
-
     transition: 0.2s;
 }
 
 input:focus {
     border-color: #2563eb;
-    box-shadow: 0px 0px 5px rgba(37,99,235,0.4);
+    box-shadow: 0px 0px 5px rgba(37, 99, 235, 0.4);
 }
 
 /* BOTÕES */
@@ -62,15 +59,11 @@ button {
     padding: 12px;
     border: none;
     border-radius: 10px;
-
     background-color: #2563eb;
     color: white;
-
     font-size: 15px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
 
@@ -97,7 +90,6 @@ hr {
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
-
     margin-top: 30px;
 }
 
@@ -106,35 +98,26 @@ hr {
     background: white;
     width: 280px;
     padding: 20px;
-
     border-radius: 18px;
-
-    box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
-
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.12);
     transition: 0.3s;
-
     position: relative;
-
     overflow: hidden;
 }
 
 .card::before {
     content: "";
-
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 6px;
-
     background: linear-gradient(90deg, #2563eb, #60a5fa);
 }
 
 .card:hover {
     transform: translateY(-5px) scale(1.02);
-
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.18);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.18);
 }
 
 .card h3 {
@@ -151,12 +134,12 @@ hr {
 .card strong {
     color: #111827;
 }
+
 .erro {
     color: red;
     font-size: 13px;
     margin-top: -5px;
     margin-bottom: 10px;
-
     display: block;
 }
 
@@ -171,7 +154,6 @@ hr {
 
 .card button:first-of-type {
     background-color: #f59e0b;
-
 }
 
 .card button:first-of-type:hover {
@@ -185,6 +167,7 @@ hr {
 .card button:last-of-type:hover {
     background-color: #b91c1c;
 }
+
 .botoesCard {
     display: flex;
     gap: 10px;
