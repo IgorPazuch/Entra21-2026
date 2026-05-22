@@ -1,8 +1,7 @@
 var editandoIndex = -1;
 
 function cadastrar(event) {
-
-    event.preventDefault();
+    event.preventDefault(); // Evita o comportamento padrão do formulário
 
     var nome = document.getElementById("nome");
     var email = document.getElementById("email");
@@ -14,37 +13,24 @@ function cadastrar(event) {
         telefone: telefone.value
     };
 
-    // PEGA CLIENTES
+    // PEGANDO CLIENTES
     var clientes = JSON.parse(localStorage.getItem("clientes")) || [];
 
-    // PEGA INDEX DE EDIÇÃO
     var editandoIndex = localStorage.getItem("editandoIndex");
 
-    // SE EXISTIR CLIENTE NA POSIÇÃO → EDITA
-    if (
-        editandoIndex !== null &&
-        editandoIndex !== "" &&
-        clientes[editandoIndex]
-    ) {
-
+    if (editandoIndex !== null && editandoIndex !== "") {
         clientes[editandoIndex] = cliente;
-
     } else {
-
-        // SENÃO → NOVO CLIENTE
         clientes.push(cliente);
+        localStorage.setItem("clientes", JSON.stringify(clientes));
     }
-
-    // SALVA
     localStorage.setItem("clientes", JSON.stringify(clientes));
 
-    // LIMPA DADOS DE EDIÇÃO
     localStorage.removeItem("editandoIndex");
     localStorage.removeItem("nomeEditar");
     localStorage.removeItem("emailEditar");
     localStorage.removeItem("telefoneEditar");
 
-    // LIMPA INPUTS
     nome.value = "";
     email.value = "";
     telefone.value = "";
