@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Funções</h2>
+    <button onclick="ola()">Clique aqui</button>
+
+    <script>
+        function ola() {
+            console.log('Olá, mundo!');
+        }
+
+        ola();
+
+        function soma(a, b) {
+            let x=a + b;
+            console.log(x);
+        }
+
+        function dobro(n1) {
+            let x = n1 * 2;
+            console.log(x);
+        }
+
+        function dividir(n1, n2) {
+            var x = n1 / n2;
+            console.log(x);
+        }
+
+        function subtrair(n1, n2) {
+            var x = n1 - n2;
+            console.log(x);
+        }
+
+        let retorno = subtrair(100,10)
+        console.log(retorno);
+
+        const gravar = function(nome){ //função anônima
+            console.log('Salvando: ${nome}');
+        }
+
+        gravar('Igor Pazuch');
+
+        const nomeCompleto = function(nome, sobrenome) { //função anônima
+            console.log('Nome completo: ${nome} ${sobrenome}');
+        }
+
+        nomeCompleto('Igor', 'Pazuch');
+
+        const media = (n1, n2) => { // Arrow function (sai o nome da função "function" e entra a seta "=>")
+            let soma = n1 + n2;
+            console.log(soma / 2);
+        }
+
+        media(20, 30);
+    </script>
+</body>
+</html>
