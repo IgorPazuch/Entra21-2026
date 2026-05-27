@@ -7,20 +7,27 @@
 </head>
 <body>
     <script>
-        fetch('https://viacep.com.br/ws/01001000/json/')
+        
+        function lerCeps() {
+        /*fetch('https://viacep.com.br/ws/01001000/json/')
             .then(response => response.json())
             .then(dados => console.log(dados));
 
-            console.log('Olá');
+            console.log('Olá'); */
+        }
 
         async function carregaLogradouro() {
+            try{
             let dados = await fetch('https://viacep.com.br/ws/01001000/json/');
             let response = await dados.json();
             console.log(response);
 
             console.log('Olá novamente');
+        } catch (error) {
+            console.error(error.message);
         }
 
+    }
         carregaLogradouro();
     </script>
 </body>
