@@ -7,6 +7,12 @@
 </head>
 <body>
     <script>
+        fetch('https://viacep.com.br/ws/01001000/json/')
+            .then(response => response.json())
+            .then(dados => console.log(dados));
+
+            console.log('Olá');
+
         async function carregaLogradouro() {
             let dados = await fetch('https://viacep.com.br/ws/01001000/json/');
             let response = await dados.json();
