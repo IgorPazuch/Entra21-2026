@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Antes de começar, faça o login:</h1>
+
+    <form id="login">
+        <input type="email" id="email" name="username" placeholder="Email">
+        <input type="password" id="senha" name="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('login');
+
+        form.addEventListener("submit", login);
+
+        async function login(event) {
+
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+
+            const senha = document.getElementById("senha").value;
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            if (email === "igor@gmail.com" && senha === "123") {
+
+                const usuario = {
+                    nome: "Igor",
+                    email: email
+                };
+
+                localStorage.setItem(
+                    "usuarioLogado",
+                    JSON.stringify(usuario)
+                );
+
+                window.location.href = "home.html";
+
+            } else {
+
+                alert("Email ou senha inválidos");
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
