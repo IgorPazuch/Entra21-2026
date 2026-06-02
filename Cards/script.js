@@ -7,10 +7,19 @@ function cadastrar(event) {
     var email = document.getElementById("email");
     var telefone = document.getElementById("telefone");
 
+    var rua = document.getElementById("rua");
+    var bairro = document.getElementById("bairro");
+    var cidade = document.getElementById("cidade");
+    var cep = document.getElementById("cep");
+
     var cliente = {
         nome: nome.value,
         email: email.value,
-        telefone: telefone.value
+        telefone: telefone.value,
+        cep: cep.value,
+        rua: rua.value,
+        bairro: bairro.value,
+        cidade: cidade.value
     };
 
     // PEGANDO CLIENTES
@@ -62,10 +71,12 @@ window.onload = function () {
                 <div class="card">
 
                     <h3>${cliente.nome}</h3>
-
                     <p>📧 ${cliente.email}</p>
-
                     <p>📱 ${cliente.telefone}</p>
+                    <p>🆔 ${cliente.cep}</p>
+                    <p>📍 ${cliente.rua}</p>
+                    <p>🏘️ ${cliente.bairro}</p>
+                    <p>🌆 ${cliente.cidade}</p>
 
                     <button onclick="editarCliente(${index})">
                         Editar
@@ -123,4 +134,37 @@ function editarCliente(index) {
     window.location.href = "cadastro.html";
 }
 
+async function buscarCep() {
 
+    let cep = document.getElementById("cep").value;
+
+    // Remove traços e caracteres especiais
+    cep = cep.replace(/\D/g, "");
+
+    if (cep.length !== 8) {
+        alert("CEP inválido!");
+        return;
+    }
+
+    try {
+
+        const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+
+        const dados = await resposta.json();
+
+        if (dados.erro) {
+            alert("CEP não encontrado!");
+            return;
+        }
+
+        document.getElementById("rua").value = dados.logradouro;
+        document.getElementById("bairro").value = dados.bairro;
+        document.getElementById("cidade").value = dados.localidade;
+
+    } catch (erro) {
+
+        console.error(erro);
+        alert("Erro ao buscar CEP.");
+
+    }
+}
