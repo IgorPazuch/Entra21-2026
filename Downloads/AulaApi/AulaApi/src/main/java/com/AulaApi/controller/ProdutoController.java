@@ -1,8 +1,8 @@
 package com.AulaApi.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,78 +15,86 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AulaApi.entities.Produto;
+import com.AulaApi.services.ProdutoService;
 
 @RestController
 @RequestMapping("produtos")
 public class ProdutoController {
 
-    private List<Produto> produtos = new ArrayList<>();
+    @Autowired
+    private ProdutoService service;
 
     @GetMapping
     public ResponseEntity<List<Produto>> getProdutos() {
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(produtos);
+                .body(service.consultar());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUmProduto(@PathVariable long id) {
+    	try {
+        Produto produto = service.getUm(id);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(produto);
+        
+    	} catch(Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Produto não encontrado");
+    	}
 
-        for (Produto prod : produtos) {
 
-            if (prod.getId() == id) {
-                return ResponseEntity
-                        .status(HttpStatus.OK)
-                        .body(prod);
-            }
-        }
-
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body("Produto não encontrado");
     }
+    
 
     @PostMapping
     public ResponseEntity<?> salvar(@RequestBody Produto produto) {
 
-        produto.setId(produtos.size() + 1);
+        try {
 
-        produtos.add(produto);
+            produto = service.salvar(produto);
 
-        return ResponseEntity.ok(produto);
-    }
-    
-    @PutMapping("/{id}")
-    public ResponseEntity<?> alterar(@PathVariable long id, @RequestBody Produto produto) {
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(produto);
 
-        for (Produto prod : produtos) {
+        } catch (Exception e) {
 
-            if (prod.getId() == id) {
-            	prod.setDescricao(produto.getDescricao());
-            	prod.setPreco(produto.getPreco());
-            	prod.setEstoque(produto.getEstoque());
-                return ResponseEntity.status(HttpStatus.OK).body(prod);
-            }
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
         }
-
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body("Produto não encontrado");
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> alterar(
+            @PathVariable long id,
+            @RequestBody Produto produto) {
+
+        try {
+
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(service.alterar(id, produto));
+
+        } catch (Exception e) {
+
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable long id) {
 
-        for (Produto prod : produtos) {
-
-            if (prod.getId() == id) {
-            	produtos.remove(prod);
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-            }
-        }
+        service.excluir(id);
 
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body("Produto não encontrado");
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
-    
 }
