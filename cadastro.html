@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="consulta.html">Consulta</a>
+    </nav>
+    <hr>
+
+    <h1>Cadastro de Produto</h1>
+
+    <form id="formProduto">
+
+        <label>Nome:</label>
+        <input type="text" id="nome">
+        <br><br>
+
+        <label>Preço:</label>
+        <input type="number" id="preco">
+        <br><br>
+
+        <label>Quantidade:</label>
+        <input type="number" id="quantidade">
+        <br><br>
+
+        <button type="button" onclick="gravar()">Gravar</button>
+
+        <script>
+            function gravar() {
+
+                var descricao = document.getElementById("nome").value;
+                var preco = document.getElementById("preco").value;
+                var estoque = document.getElementById("quantidade").value;
+
+                var produto = {
+                    descricao: descricao,
+                    preco: preco,
+                    estoque: estoque
+                };
+
+                fetch("http://localhost:8080/produtos", {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    }, body: JSON.stringify(produto)
+
+                }).then(function () {
+                    window.location.href = "consulta.html";
+                });
+
+            }
+        </script>
+</body>
+
+</html>
